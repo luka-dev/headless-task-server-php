@@ -15,7 +15,6 @@ class Task implements JsonSerializable
         $this->script = $script;
     }
 
-
     /**
      * @param string $pathToFile
      * @return Task

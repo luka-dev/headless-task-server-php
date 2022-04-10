@@ -4,6 +4,7 @@ namespace LuKa\HeadlessTaskServerPhp;
 
 use GeoLocation;
 use JsonSerializable;
+use LuKa\HeadlessTaskServerPhp\Enum\BlockedResourceTypes;
 
 class Options implements JsonSerializable
 {
@@ -19,7 +20,7 @@ class Options implements JsonSerializable
     /** @var string|null example - "en-Us" */
     private $locale = null;
 
-    /** @var \BlockedResourceTypes[]|null */
+    /** @var BlockedResourceTypes[]|null */
     private $blockedResourceTypes = null;
 
     /** @var string|null A socks5 or http proxy url (and optional auth). http://username:password@proxy.com:80 */
