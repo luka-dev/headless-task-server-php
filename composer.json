@@ -1,0 +1,21 @@
+{
+    "name": "luka/headless-task-server-php",
+    "description": "Helper for sending requests to luka-dev/headless-task-server",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "LuKa\\HeadlessTaskServerPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "LuKa",
+            "email": "leandr1999@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "ext-json": "*",
+        "ext-curl": "*"
+    }
+}
