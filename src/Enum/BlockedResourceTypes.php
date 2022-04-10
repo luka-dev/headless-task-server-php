@@ -1,5 +1,7 @@
 <?php
 
+namespace LuKa\HeadlessTaskServerPhp\Enum;
+
 final class BlockedResourceTypes
 {
     public const JsRuntime = 'JsRuntime';

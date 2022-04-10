@@ -2,7 +2,7 @@
 
 namespace LuKa\HeadlessTaskServerPhp\Enum;
 
-class ResponseStatuses
+final class ResponseStatuses
 {
     public const DONE = 'DONE';
     public const FAILED = 'FAILED';
