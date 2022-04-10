@@ -1,6 +1,25 @@
 {
     "name": "luka-dev/headless-task-server-php",
     "description": "Helper for sending requests to luka-dev/headless-task-server",
+    "keywords": [
+        "headless",
+        "browser",
+        "playwright",
+        "puppeteer",
+        "task",
+        "automation",
+        "cluster",
+        "scrape",
+        "crawl",
+        "chrome",
+        "chromium",
+        "parse",
+        "hero",
+        "secret-agent",
+        "render",
+        "js",
+        "php"
+    ],
     "license": "MIT",
     "autoload": {
         "psr-4": {
