@@ -1,5 +1,5 @@
 {
-    "name": "luka/headless-task-server-php",
+    "name": "luka-dev/headless-task-server-php",
     "description": "Helper for sending requests to luka-dev/headless-task-server",
     "license": "MIT",
     "autoload": {
