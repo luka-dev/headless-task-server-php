@@ -4,7 +4,7 @@ This lib help to prepare request with your scraper script and parse response.
 
 # Install
 ```bash
-composer require luka-dev/headless-task-server
+composer require luka-dev/headless-task-server-php
 ```
 
 # Usage
