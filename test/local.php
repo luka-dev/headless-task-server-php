@@ -17,6 +17,7 @@ if ($server->isAlive()) {
 
 try {
     $task = Task::fromFile(__DIR__ . '/example.js');
+    $task->setVar('myVar', 'Some TeSt VALUE');
 } catch (Exception $e) {
     echo $e->getMessage() . PHP_EOL;
     echo 'Check path to file';
@@ -37,4 +38,5 @@ catch (Exception $e) {
 
 echo 'Response received' . PHP_EOL;
 echo 'Title is: '. $response->getOutput()->title . PHP_EOL;
+echo 'Test var is: '. $response->getOutput()->myVar . PHP_EOL;
 echo 'Test passed. Bye';
