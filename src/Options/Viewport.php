@@ -1,5 +1,10 @@
 <?php
 
+namespace LuKa\HeadlessTaskServerPhp\Options;
+
+use Exception;
+use JsonSerializable;
+
 class Viewport implements JsonSerializable
 {
     /** @var int */

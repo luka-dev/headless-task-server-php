@@ -2,9 +2,10 @@
 
 namespace LuKa\HeadlessTaskServerPhp;
 
-use GeoLocation;
 use JsonSerializable;
 use LuKa\HeadlessTaskServerPhp\Enum\BlockedResourceTypes;
+use LuKa\HeadlessTaskServerPhp\Options\GeoLocation;
+use LuKa\HeadlessTaskServerPhp\Options\UserProfile;
 
 class Options implements JsonSerializable
 {
@@ -25,6 +26,9 @@ class Options implements JsonSerializable
 
     /** @var string|null A socks5 or http proxy url (and optional auth). http://username:password@proxy.com:80 */
     private $upstreamProxyUrl = null;
+
+    /** @var UserProfile|null */
+    public $userProfile = null;
 
 
     public function getUserAgent(): ?string
