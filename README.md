@@ -1,4 +1,4 @@
-# PHP Helper lib for [luka-dev/headless-task-server](https://github.com/luka-dev/headless-task-server-php)
+# PHP Helper lib for [luka-dev/headless-task-server](https://github.com/luka-dev/headless-task-server)
 
 This lib help to prepare request with your scraper script and parse response.
 
