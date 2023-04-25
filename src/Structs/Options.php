@@ -1,16 +1,17 @@
 <?php
 
-namespace LuKa\HeadlessTaskServerPhp;
+namespace LuKa\HeadlessTaskServerPhp\Structs;
 
 use JsonSerializable;
 use LuKa\HeadlessTaskServerPhp\Enum\BlockedResourceTypes;
-use LuKa\HeadlessTaskServerPhp\Options\GeoLocation;
-use LuKa\HeadlessTaskServerPhp\Options\UserProfile;
 
 class Options implements JsonSerializable
 {
     /** @var string|null */
     private $userAgent = null;
+
+    /** @var DNSOverTlsProvider|null */
+    private $dnsOverTlsProvider = null;
 
     /** @var ?GeoLocation */
     private $geoLocation = null;
@@ -24,12 +25,26 @@ class Options implements JsonSerializable
     /** @var BlockedResourceTypes[]|null */
     private $blockedResourceTypes = null;
 
+    /** @var string[]|null */
+    private $blockedResourceUrls = [];
+
     /** @var string|null A socks5 or http proxy url (and optional auth). http://username:password@proxy.com:80 */
     private $upstreamProxyUrl = null;
 
-    /** @var UserProfile|null */
-    public $userProfile = null;
-
+    public function __construct(array $data = [])
+    {
+        foreach ($data as $key => $value) {
+            switch ($key) {
+                case 'dnsOverTlsProvider':
+                    $this->dnsOverTlsProvider = new DNSOverTlsProvider($value['host'] ?? null, $value['servername'] ?? null);
+                    break;
+                default:
+                    if (property_exists(self::class, $key)) {
+                        $this->{$key} = $value;
+                    }
+            }
+        }
+    }
 
     public function getUserAgent(): ?string
     {
@@ -89,10 +104,24 @@ class Options implements JsonSerializable
     {
         return $this->blockedResourceTypes;
     }
+    public function getBlockedResourceUrls(): ?array
+    {
+        return $this->blockedResourceUrls;
+    }
 
     public function getUpstreamProxyUrl(): ?string
     {
         return $this->upstreamProxyUrl;
+    }
+
+    public function getDnsOverTlsProvider(): ?DNSOverTlsProvider
+    {
+        return $this->dnsOverTlsProvider;
+    }
+
+    public function setDnsOverTlsProvider(?DNSOverTlsProvider $dnsOverTlsProvider): void
+    {
+        $this->dnsOverTlsProvider = $dnsOverTlsProvider;
     }
 
     public function jsonSerialize(): array

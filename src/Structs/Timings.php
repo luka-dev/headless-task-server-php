@@ -1,6 +1,6 @@
 <?php
 
-namespace LuKa\HeadlessTaskServerPhp\Helpers;
+namespace LuKa\HeadlessTaskServerPhp\Structs;
 
 use DateTime;
 use DateTimeZone;
@@ -16,26 +16,29 @@ class Timings
     /** @var DateTime|null */
     private $createdAt;
 
-    public function __construct(object $timings)
+    public function __construct(array $timings = [])
     {
         try {
-            $this->beginAt = new DateTime($timings->begin_at, new DateTimeZone('UTC'));
-        }
-        catch (\Throwable $e) {
+            if ($timings['begin_at'] !== null) {
+                $this->beginAt = new DateTime($timings['begin_at'], new DateTimeZone('UTC'));
+            }
+        } catch (\Throwable $e) {
             $this->beginAt = null;
         }
 
         try {
-            $this->endAt = new DateTime($timings->end_at, new DateTimeZone('UTC'));
-        }
-        catch (\Throwable $e) {
+            if ($timings['end_at'] !== null) {
+                $this->endAt = new DateTime($timings['end_at'], new DateTimeZone('UTC'));
+            }
+        } catch (\Throwable $e) {
             $this->endAt = null;
         }
 
         try {
-            $this->createdAt = new DateTime($timings->created_at, new DateTimeZone('UTC'));
-        }
-        catch (\Throwable $e) {
+            if ($timings['end_at'] !== null) {
+                $this->createdAt = new DateTime($timings['created_at'], new DateTimeZone('UTC'));
+            }
+        } catch (\Throwable $e) {
             $this->createdAt = null;
         }
     }

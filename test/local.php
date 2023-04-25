@@ -1,8 +1,8 @@
 <?php
 
-use LuKa\HeadlessTaskServerPhp\Options;
 use LuKa\HeadlessTaskServerPhp\Server;
-use LuKa\HeadlessTaskServerPhp\Task;
+use LuKa\HeadlessTaskServerPhp\Structs\Options;
+use LuKa\HeadlessTaskServerPhp\Structs\Task;
 
 require '../vendor/autoload.php';
 
@@ -37,6 +37,6 @@ catch (Exception $e) {
 }
 
 echo 'Response received' . PHP_EOL;
-echo 'Title is: '. $response->getOutput()->title . PHP_EOL;
-echo 'Test var is: '. $response->getOutput()->myVar . PHP_EOL;
+echo 'Status is: ' . $response->getStatus() . PHP_EOL;
+echo 'Title is: '. json_encode($response->getOutput()) . PHP_EOL;
 echo 'Test passed. Bye';

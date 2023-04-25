@@ -1,6 +1,6 @@
 <?php
 
-namespace LuKa\HeadlessTaskServerPhp\Options;
+namespace LuKa\HeadlessTaskServerPhp\Structs;
 
 use Exception;
 use JsonSerializable;

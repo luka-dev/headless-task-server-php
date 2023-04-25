@@ -2,6 +2,11 @@
 
 namespace LuKa\HeadlessTaskServerPhp;
 
+use LuKa\HeadlessTaskServerPhp\Structs\Options;
+use LuKa\HeadlessTaskServerPhp\Structs\Profile;
+use LuKa\HeadlessTaskServerPhp\Structs\Response;
+use LuKa\HeadlessTaskServerPhp\Structs\Task;
+
 class Server
 {
     /** @var string HTTP/S link to the executive server */
@@ -35,10 +40,11 @@ class Server
     /**
      * @param Task $task
      * @param Options|null $options
+     * @param Profile|null $profile
      * @return Response
      * @throws \Exception
      */
-    public function runTask(Task $task, ?Options $options = null): Response
+    public function runTask(Task $task, ?Options $options = null, ?Profile $profile = null): Response
     {
         $headers = [
             'Content-Type:application/json'
@@ -53,6 +59,7 @@ class Server
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt( $curl, CURLOPT_POSTFIELDS, json_encode([
             'options' => $options,
+            'profile' => $profile,
             'script' => $task
         ]));
 
