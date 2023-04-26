@@ -7,16 +7,13 @@ use JsonSerializable;
 class Cookie implements JsonSerializable
 {
     /** @var string */
-    private $name;
+    private $name = null;
 
     /** @var string */
-    private $value;
+    private $value = null;
 
     /** @var null|string */
     private $domain = null;
-
-    /** @var null|string */
-    private $url = null;
 
     /** @var null|string */
     private $path = null;
@@ -28,18 +25,25 @@ class Cookie implements JsonSerializable
     private $httpOnly = null;
 
     /** @var null|bool */
-    private $session = null;
-
-    /** @var null|bool */
     private $secure = null;
 
     /** @var null|string */
     private $sameSite = null;
 
-    public function __construct(string $name, $value)
+    /** @var boolean|null */
+    private $sameParty = null;
+
+    public function __construct(array $data = [])
     {
-        $this->name = $name;
-        $this->value = (string)$value;
+        $this->name = $data['name'] ?? null;
+        $this->value = $data['value'] ?? null;
+        $this->setSecure($data['secure'] ?? null);
+        $this->setSameSite($data['sameSite'] ?? null);
+        $this->setSameParty($data['sameParty'] ?? null);
+        $this->setExpires($data['expires'] ?? null);
+        $this->setHttpOnly($data['httpOnly'] ?? null);
+        $this->setPath($data['path'] ?? null);
+        $this->setDomain($data['domain'] ?? null);
     }
 
     public function getName(): string
@@ -60,16 +64,6 @@ class Cookie implements JsonSerializable
     public function setDomain(?string $domain): void
     {
         $this->domain = $domain;
-    }
-
-    public function getUrl(): ?string
-    {
-        return $this->url;
-    }
-
-    public function setUrl(?string $url): void
-    {
-        $this->url = $url;
     }
 
     public function getPath(): ?string
@@ -102,16 +96,6 @@ class Cookie implements JsonSerializable
         $this->httpOnly = $httpOnly;
     }
 
-    public function getSession(): ?bool
-    {
-        return $this->session;
-    }
-
-    public function setSession(?bool $session): void
-    {
-        $this->session = $session;
-    }
-
     public function getSecure(): ?bool
     {
         return $this->secure;
@@ -141,7 +125,23 @@ class Cookie implements JsonSerializable
         }
     }
 
-    public function jsonSerialize()
+    /**
+     * @return bool|null
+     */
+    public function getSameParty(): ?bool
+    {
+        return $this->sameParty;
+    }
+
+    /**
+     * @param bool|null $sameParty
+     */
+    public function setSameParty(?bool $sameParty): void
+    {
+        $this->sameParty = $sameParty;
+    }
+
+    public function jsonSerialize(): array
     {
         return array_filter(get_object_vars($this), function ($v) {
             return !is_null($v);

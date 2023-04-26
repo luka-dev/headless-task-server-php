@@ -30,16 +30,7 @@ class Profile implements JsonSerializable
             switch ($key) {
                 case 'cookies':
                     foreach ($value as $cookie) {
-                        $cookieObj = new Cookie($cookie['name'], $cookie['value']);
-                        $cookieObj->setExpires($cookie['expires']);
-                        $cookieObj->setDomain($cookie['domain']);
-                        $cookieObj->setHttpOnly($cookie['httpOnly']);
-                        $cookieObj->setUrl($cookie['url']);
-                        $cookieObj->setPath($cookie['path']);
-                        $cookieObj->setSameSite($cookie['sameSite']);
-                        $cookieObj->setSecure($cookie['secure']);
-                        $cookieObj->setSession($cookie['session']);
-                        $this->addCookie($cookieObj);
+                        $this->addCookie(new Cookie($cookie));
                     }
                     break;
                 case 'storage':
