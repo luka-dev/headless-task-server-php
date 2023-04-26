@@ -49,7 +49,7 @@ $response = $server->runTask($task, $options);
 $session = $response->getSession();
 
 //Check if Task DONE in correct way
-$isDONE = $response->getStatus() === \LuKa\HeadlessTaskServerPhp\Enum\ResponseStatuses::DONE;
+$isDONE = $response->getStatus() === \LuKa\HeadlessTaskServerPhp\Enum\ResponseStatuses::RESOLVE;
 
 //Get Timings (How much time take to process this Task)
 $timings = $response->getTimings()
@@ -58,6 +58,6 @@ $timings = $response->getTimings()
 //$timings->getBeginAt() 
 //$timings->getEndAt()
 
-//Here will be provided all output from `agent.output`
+//Here will be provided all output from `resolve`
 $output = $response->getOutput();
 ```
